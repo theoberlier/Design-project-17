@@ -135,14 +135,14 @@ for row_idx, label in enumerate(row_labels):
 #print(all_curve[0])
 plt.tight_layout()
 
-# Ajuste les marges pour laisser plus de place à gauche
+
 plt.subplots_adjust(left=0.15, right=0.97, top=0.95, bottom=0.05, hspace=0.3)
 
-# Ajoute les titres verticaux plus visibles et centrés
+
 fig.text(0.04, 0.72, "Pentes fortes", fontsize=25, weight='bold', color='darkred', va='center', rotation='vertical')
 fig.text(0.04, 0.28, "Pentes douces", fontsize=25, weight='bold', color='blue', va='center', rotation='vertical')
 
-# Ajoute un fond coloré plus visible mais toujours léger
+
 from matplotlib.patches import Rectangle
 fig.patches.extend([
     Rectangle((0.15, 0.52), 0.82, 0.43, transform=fig.transFigure,

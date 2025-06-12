@@ -79,11 +79,7 @@ for seq_idx, folder in enumerate(sequence_folders):
     ax.set_ylim(0,max_height )  # Échelle verticale unifiée
     
     if count == 5:
-        time_indices= time_indices[5:] #enleve des images au debut time_indices= time_indices[5:]
-    #if count == 12:
-        #time_indices= time_indices[200:] # on retire cette image car manque de donnée utilisable
-    #if count == 4 :
-    #    time_indices= time_indices[:-200]
+        time_indices= time_indices[5:] #on enleve des valeurs abérantes
 
     if len(time_indices) >= 4:
         first = time_indices[0]
@@ -100,8 +96,7 @@ for seq_idx, folder in enumerate(sequence_folders):
             if len(points) > 0:
                 if count != 15 and count != 1 and count != 2 and count !=3 and count !=4 and count !=5 :
                     points = points[4:] #enleve 4 points au depart et 5a la fin points = points[4:-5]
-                #if count == 13:
-                #    points = points[6:]
+                
                 if 0<count<5: 
                     x, y = -(600+points[:, 0])+2500, -(points[:, 1])+637.5
                     x = x*115/1875
@@ -114,18 +109,15 @@ for seq_idx, folder in enumerate(sequence_folders):
                 #ax.plot(-point_coo[count-1][0]+2500, -point_coo[count-1][1]+637.5, 'kx', markersize=5, label='_nolegend_')
                 ax.plot((-point_coo[count-1][0]+2500)*115/1875, (-point_coo[count-1][1]+637.5)*115/1875, 'kx', markersize=5, label='_nolegend_')                
 
-        #width = 2500*115/1875
-        #max_height = max_height*115/1875
-        #ax.set_title(f'Séquence {seq_idx + 1}')
+        
         #ax.invert_yaxis()
         #ax.invert_xaxis()
-        ax.set_xticks(np.linspace(0, longueur, 5))  # ou une autre valeur selon le visuel souhaité         
-        ax.set_yticks(np.linspace(0, max_height, 5))#
-        ax.tick_params(labelsize=12, length=2)  # pour que ce soit discret
+        ax.set_xticks(np.linspace(0, longueur, 5))         
+        ax.set_yticks(np.linspace(0, max_height, 5))
+        ax.tick_params(labelsize=12, length=2)  
         ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.5)
         ax.legend(fontsize=12)
     else:
-        #ax.set_title(f'Séquence {seq_idx + 1} (données insuffisantes)')
         ax.axis('off')
 
 col_titles = ["4cm", "7cm", "10cm", "10cm bis"]
@@ -144,16 +136,12 @@ for row_idx, label in enumerate(row_labels):
 
 #print(all_curve[0])
 plt.tight_layout()
-#plt.suptitle("Évolution de l'interface eau-sédiment sur 16 séquences", fontsize=22, y=1.02)
 
-# Ajuste les marges pour laisser plus de place à gauche
 plt.subplots_adjust(left=0.15, right=0.97, top=0.95, bottom=0.05, hspace=0.3)
 
-# Ajoute les titres verticaux plus visibles et centrés
 fig.text(0.04, 0.72, "Pentes fortes", fontsize=25, weight='bold', color='darkred', va='center', rotation='vertical')
 fig.text(0.04, 0.28, "Pentes douces", fontsize=25, weight='bold', color='blue', va='center', rotation='vertical')
 
-# Ajoute un fond coloré plus visible mais toujours léger
 from matplotlib.patches import Rectangle
 fig.patches.extend([
     Rectangle((0.15, 0.52), 0.82, 0.43, transform=fig.transFigure,

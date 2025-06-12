@@ -215,7 +215,6 @@ if len(vitesses) >= 5:
 else:
     vitesses_lisse = vitesses
 
-# === TRACÉ GRAPHIQUE MÊME FORMAT QUE LES MULTIPLES ===
 fig, ax = plt.subplots(figsize=(7, 5))
 
 ax.plot(temps_vitesses, vitesses, 'o-', markersize=4, label="Vitesse brute")

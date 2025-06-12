@@ -161,11 +161,11 @@ if len(time_indices) >= 4:
     # Déterminons les étapes clés
     first_index = time_indices[0]
     last_index = time_indices[-1]
-    quarter_index = time_indices[len(time_indices) // 4]
-    three_quarter_index = time_indices[(3 * len(time_indices)) // 4]
+    quarter_index = time_indices[len(time_indices) // 3]
+    three_quarter_index = time_indices[(2 * len(time_indices)) // 3]
 
     selected_indices = [first_index, quarter_index, three_quarter_index, last_index]
-    labels = ['Début', '1/4 du temps', '3/4 du temps', 'Fin']
+    labels = ['Début', '1/3 du temps', '2/3 du temps', 'Fin']
     colors = ['blue', 'green', 'orange', 'red']
 
     plt.figure(figsize=(10, 6))
@@ -183,7 +183,7 @@ if len(time_indices) >= 4:
     plt.legend()
     plt.grid(True)
     plt.gca().invert_xaxis()
-    plt.gca().invert_yaxis()  # si tu veux la même orientation que le 3D
+    plt.gca().invert_yaxis()  
     plt.show()
 
 else:
